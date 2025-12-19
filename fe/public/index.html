@@ -101,6 +101,9 @@
     <div id="root"></div>
     <script type="text/babel">
 
+        const API_URL = "https://nam20225146.onrender.com"
+        // const API_URL = "http://localhost:3001";
+
         const root = ReactDOM.createRoot(document.getElementById("root"));
         root.render(<App />);
 
@@ -115,7 +118,7 @@
             const [editingUser, setEditingUser] = React.useState(null);
 
             const fetchUsers = () => {
-                const url = `http://localhost:3001/api/users?page=${page}&limit=${limit}&search=${search}`;
+                const url = `${API_URL}/api/users?page=${page}&limit=${limit}&search=${search}`;
                 fetch(url)
                     .then(res => res.json())
                     .then(data => {
@@ -127,7 +130,7 @@
             }
 
             const deleteUser = (id) => {
-                fetch(`http://localhost:3001/api/users/${id}`, {
+                fetch(`${API_URL}/api/users/${id}`, {
                     method: "DELETE"
                 })
                     .then(res => res.json())
@@ -320,8 +323,8 @@
             const handleSubmit = () => {
                 if (!validate()) return;
                 const url = user
-                    ? `http://localhost:3001/api/users/${user._id}`
-                    : `http://localhost:3001/api/users`;
+                    ? `${API_URL}/api/users/${user._id}`
+                    : `${API_URL}/api/users`;
                 const method = user ? "PUT" : "POST";
                 fetch(url, {
                     method,
